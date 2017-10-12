@@ -10,19 +10,18 @@
     <p>No posts yet</p>
     {% else %}
 
-        <ul>
             {% for post in posts %}
-            <li>{{post.title}}</li>
-            <li>{{post.body}}
-                <form method="POST" action="/delete-post" style="display:inline-block;">
-                    <input type="hidden" name="post-id" value="{{post.id}}" />
-                    <input type="submit" value="Remove Post" />
-                </form>
-            </li>
-        </br>
-        <hr />
+            <a href="/post?id={{post.id}}">
+            <h1>
+                {{post.title}}
+            </h1>
+            </a>
+            <p>
+                {{post.body}}
+            </p>
+            <br />
+            <hr />
             {% endfor %}
-        </ul>
 
     {% endif %}
 
