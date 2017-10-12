@@ -1,9 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Blog</h1>
 
     <hr />
+
+    <h1>Blog</h1>
 
     {% if posts|length == 0 %}
     <p>No posts yet</p>
@@ -11,12 +12,14 @@
 
         <ul>
             {% for post in posts %}
-            <li>{{post.name}}
+            <li>{{post.title}}</li>
+            <li>{{post.body}}
                 <form method="POST" action="/delete-post" style="display:inline-block;">
                     <input type="hidden" name="post-id" value="{{post.id}}" />
                     <input type="submit" value="Remove Post" />
                 </form>
             </li>
+        </br>
             {% endfor %}
         </ul>
 
