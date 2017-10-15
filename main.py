@@ -35,14 +35,16 @@ def post():
 
 @app.route('/newpost', methods=['POST', 'GET'])
 def newpost():
-
     if request.method == 'POST':
         title = request.form['title']
         body = request.form['body']
-        new_post = Blog(title, body)
-        db.session.add(new_post)
-        db.session.commit()
-        return redirect('/post?id=' + str(new_post.id))
+        if title and body:
+            new_post = Blog(title, body)
+            db.session.add(new_post)
+            db.session.commit()
+            return redirect('/post?id=' + str(new_post.id))
+        else:
+            flash("Please fill out both the title and body field to create your post", "error")
 
     return render_template('newpost.html')
 
